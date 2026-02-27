@@ -1,0 +1,154 @@
+/* ====== 1) Global basics ====== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0b0b0f;           /* dystopian black */
+  color: #f2f2f2;
+  line-height: 1.65;
+
+  /* Body text font (paragraphs + list by default) */
+  font-family: "Georgia", serif;
+}
+
+/* Keep layout readable on wide screens */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ====== 2) Header styling ====== */
+header {
+  text-align: center;
+  padding: 28px 16px 18px;
+}
+
+h1, h2, h3 {
+  /* Headings font (different from body) */
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 2.4rem;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 18px auto 18px;
+  max-width: 700px;
+}
+
+/* ====== 3) Images (all images responsive by default) ====== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Center image: smaller, always centered, slightly bigger than the others */
+.center-image {
+  width: min(680px, 90vw);       /* responsive size cap */
+  margin: 16px auto 8px;         /* centers it */
+}
+
+/* ====== 4) Section “cards” ====== */
+section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  padding: 18px;
+  margin: 18px 0;
+}
+
+/* ====== 5) Make the 3 series images the SAME size ======
+   We target only images inside sections, but NOT the centered hero image.
+   We also avoid stretching by using object-fit: cover.
+*/
+section img:not(.center-image) {
+  width: 100%;
+  max-height: 350px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* ====== 6) Text styling ====== */
+p, li {
+  /* body font already set on body; this keeps it consistent */
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+}
+
+/* List spacing */
+ul {
+  margin: 10px 0 0;
+  padding-left: 22px;
+}
+
+li {
+  margin: 6px 0;
+}
+
+/* ===== Scroll Animation Base ===== */
+
+/* ===== Scroll Animation (safe) ===== */
+
+/* Default: everything is visible */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Only animate when JS confirms it’s running */
+.js .reveal {
+  opacity: 0;
+  transition: opacity 700ms ease, transform 700ms ease;
+  will-change: opacity, transform;
+}
+
+.js .reveal-left {
+  transform: translateX(-60px);
+}
+
+.js .reveal-right {
+  transform: translateX(60px);
+}
+
+.js .reveal-fade {
+  transform: translateY(20px);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal-left,
+  .js .reveal-right,
+  .js .reveal-fade {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
